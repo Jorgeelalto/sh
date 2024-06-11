@@ -12,12 +12,12 @@
 
 if [ $# -ne 2 ]; then
 	echo "Invalid number of arguments."
-	echo "Usage: rename_pics.sh <force_rename: yes/no> <file_format>"
+	echo "Usage: rename_pics.sh <force_rename: yes/no> <file_format (case insensitive!)>"
 	exit 1
 fi
 
 echo "Renaming all $2 pictures..."
-for FILE in $(ls | grep "$2"); do
+for FILE in $(ls | grep -i "$2"); do
 	# Skip if the name format is already the one we need
 	if [ ! "$1" = "yes" ]; then
 		if [[ ${FILE%%.*} =~ ^IMG_[0-9]{8}_[0-9]{6}$ ]]; then
@@ -37,10 +37,13 @@ for FILE in $(ls | grep "$2"); do
 		echo "Might not have correct EXIF data if at all. Name will not be modified."
 	else
 		# Compose the final filename
+		FORMAT=$(echo $FORMAT | awk '{print tolower($0)}')
 		NEWNAME="$NEWNAME.$FORMAT"
 		# If it already exists then there are several pics with the same EXIF (incorrect)
 		if [ -f "$NEWNAME" ]; then
-			echo "File with the same name already exists! Skipping..."
+			echo "File with the same name already exists!"
+			echo "$FILE -> $NEWNAME"
+			echo "Skipping..."
 			continue
 		fi
 		echo "Renaming $FILE to $NEWNAME"
