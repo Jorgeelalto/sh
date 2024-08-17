@@ -106,14 +106,14 @@ find . -type f -name "*.mp3" -print0 | while IFS= read -r -d '' FILE; do
 
     if [ "$IS_KEY_IN_TAG_CAMELOT" = "false" ]; then
         echo "    > Writing new tag"
-        echo "      TKEY=$KEY"
+        echo "      TKEY=\"$KEY\""
         mid3v2 --TKEY "$KEY" "$FILE"
     fi
 
     if [ "$IS_THERE_KEY_IN_TITLE" = "false" ]; then
         echo "    > Writing new title"
         TITLE="$KEY - $TITLE"
-        echo "      TIT2=$TITLE"
+        echo "      TIT2=\"$TITLE\""
         mid3v2 --TIT2 "$TITLE" "$FILE"
     fi
 done
