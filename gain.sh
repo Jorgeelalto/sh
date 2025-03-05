@@ -1,3 +1,1 @@
-source ~/Venvs/r128gain/bin/activate
-r128gain -s -r .
-deactivate
+find . \( -iname *.flac -o -iname *.mp3 \) -exec rsgain custom --skip-existing --tagmode=i {} \;
