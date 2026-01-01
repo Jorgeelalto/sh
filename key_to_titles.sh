@@ -1,3 +1,5 @@
+source ~/Venvs/mutagen/bin/activate
+
 # Regular key to Camelot table
 CAMELOT_TABLE=(
     'B=1B' \
