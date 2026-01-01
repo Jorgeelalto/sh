@@ -1,1 +1,1 @@
-sudo xattr -r -d com.apple.quarantine $1
+sudo xattr -r -d com.apple.quarantine "$1"

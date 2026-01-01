@@ -7,7 +7,6 @@
 # the script will skip files that already comply with that filename format.
 
 # TODO: handle the case where the EXIF shows the same time (down to the second, which happens often)
-# TODO: handle the case where a filename has a space
 
 
 if [ $# -ne 2 ]; then
